@@ -6,6 +6,7 @@ import com.codegym.repository.EmployeeRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
@@ -19,5 +20,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         List<Employee> employeeList = getAllEmployee.getResultList();
 
         return employeeList;
+    }
+
+    @Override
+    public void add(Employee employee) {
+        StoredProcedureQuery spAddEmployee = em.createNamedStoredProcedureQuery("addEmployee");
+        spAddEmployee.setParameter("firstName", employee.getFirstName());
+        spAddEmployee.setParameter("lastName", employee.getLastName());
+        spAddEmployee.setParameter("age", employee.getAge());
+        spAddEmployee.setParameter("address", employee.getAddress());
+        spAddEmployee.setParameter("salary", employee.getSalary());
+        spAddEmployee.execute();
     }
 }

@@ -8,6 +8,17 @@ import javax.persistence.*;
         procedureName = "sp_get_employee",
         resultClasses = {Employee.class}
 )
+@NamedStoredProcedureQuery(
+        name = "addEmployee",
+        procedureName = "sp_add_employee",
+        parameters = {
+                @StoredProcedureParameter(name = "firstName", mode = ParameterMode.IN, type = String.class),
+                @StoredProcedureParameter(name = "lastName", mode = ParameterMode.IN, type = String.class),
+                @StoredProcedureParameter(name = "age", mode = ParameterMode.IN, type = Integer.class),
+                @StoredProcedureParameter(name = "address", mode = ParameterMode.IN, type = String.class),
+                @StoredProcedureParameter(name = "salary", mode = ParameterMode.IN, type = Double.class)
+        }
+)
 public class Employee {
 
     @Id

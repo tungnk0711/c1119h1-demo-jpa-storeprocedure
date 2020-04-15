@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+</head>
+<body>
+<h1 class="title">Employee List</h1>
+<div>
+    <div th:each="employee,iterStat : ${listEmployee}" th:class="${iterStat.odd}? 'odd'">
+        <div class="product-item">
+            <p th:text="${iterStat.index+1}"></p>
+            <p th:text="${employee.getLastName()}"></p>
+            <p th:text="${employee.getAge()}"></p>
+            <p th:text="${employee.getAddress()}"></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
